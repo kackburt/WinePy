@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>WinePy - make room for your wine, it's about time!</title>
-    <link rel="shortcut icon" href="../img/favicon.ico"/>
+    <link rel="shortcut icon" href="favicon.ico"/>
     <!-- Bootstrap CSS -->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -39,7 +39,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#home"><img alt="WinePyLogo" src="../img/logo.svg" width="100px"></a>
+                <a class="navbar-brand" href="#home"><img alt="WinePyLogo" src="/img/logo.svg" width="100px"></a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -112,19 +112,22 @@
         <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h3 class="modal-title" id="myModalLabel">🍷 Enter a new wine for your list 🍷</h3>
+            <h3 class="modal-title" id="myModalLabel" style="text-align: center; margin: 0 auto;">🍷 ADD A WINE 🍷</h3>
         </div>
         <form method="post" action="/" enctype="multipart/form-data">
             <div class="modal-body">
                 <div class="row">
-                        <div class="col-md-12">
+                    <div class="col-md-1"></div>
+                        <div class="col-md-10">
                             <div class="input-group form-group-lg"> 
                                 <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span></span>
                                 <input class="form-control" name="name" placeholder="Name of wine" aria-describedby="sizing-addon2" type="text" required>
                             </div>
                         </div>
+                    <div class="col-md-1"></div>
                 </div>
                 <div class="row">
+                    <div class="col-md-1"></div>
                         <div class="col-md-10">
                             <div class="input-group"> 
                                 <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></span>
@@ -135,8 +138,10 @@
                                 </select>
                             </div>
                         </div>
+                    <div class="col-md-1"></div>
                 </div>
                 <div class="row">
+                    <div class="col-md-1"></div>
                         <div class="col-md-10">
                             <div class="input-group"> 
                                 <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></span>
@@ -148,8 +153,10 @@
                                 </select>
                             </div>
                         </div>
+                    <div class="col-md-1"></div>
                 </div>
                 <div class="row">
+                    <div class="col-md-1"></div>
                         <div class="col-md-10">
                             <div class="input-group"> 
                                 <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-tint" aria-hidden="true"></span></span>
@@ -161,24 +168,30 @@
                                 </select>
                             </div>
                         </div>
+                    <div class="col-md-1"></div>
                 </div>
                 <div class="row">
+                    <div class="col-md-1"></div>
                         <div class="col-md-10">
                             <div class="input-group"> 
                                 <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-leaf" aria-hidden="true"></span></span>
                                 <input class="form-control" name="vine" placeholder="Grape variety" aria-describedby="sizing-addon2" type="text">
                             </div>
                         </div>
+                    <div class="col-md-1"></div>
                 </div>
                 <div class="row">
+                    <div class="col-md-1"></div>
                         <div class="col-md-10">
                             <div class="input-group"> 
                                 <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
                                 <input class="form-control" name="year" placeholder="Vintage e.g. 2017" aria-describedby="sizing-addon2" type="number" min="1900" max="2099" step="1" required>
                             </div>
                         </div>
+                    <div class="col-md-1"></div>
                 </div>
                 <div class="row">
+                    <div class="col-md-1"></div>
                         <div class="col-md-6">
                             <div class="input-group"> 
                                 <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-text-size" aria-hidden="true"></span></span>
@@ -191,10 +204,12 @@
                                     <option value="NULL">N/A</option>
                                 </select>
                         </div>
+                    <div class="col-md-1"></div>
                 </div>
                 <br>
                 <div class="row">
-                        <div class="col-md-12">
+                    <div class="col-md-1"></div>
+                        <div class="col-md-10">
                             <div class="input-group form-group-lg"> 
                                 <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></span>
                                 <select class="form-control" name="country" placeholder="country" aria-describedby="sizing-addon2" type="text" required>
@@ -205,31 +220,38 @@
                                 </select>
                             </div>
                         </div>
+                    <div class="col-md-1"></div>
                 </div>
                 <div class="row">
+                    <div class="col-md-1"></div>
                         <div class="col-md-10">
                             <div class="input-group"> 
                                 <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-screenshot" aria-hidden="true"></span></span>
                                 <input class="form-control" name="region" placeholder="Region" aria-describedby="sizing-addon2" type="text">
                             </div>
                         </div>
+                    <div class="col-md-1"></div>
                 </div>
                 <div class="row">
+                    <div class="col-md-1"></div>
                         <div class="col-md-10">            
                             <div class="input-group">
                                 <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></span>
                                 <input class="form-control" name="winery" placeholder="Winery" aria-describedby="sizing-addon2" type="text" required>
                             </div>
                         </div>
+                    <div class="col-md-1"></div>
                 </div>
                 <br>
                 <div class="row">
-                        <div class="col-md-12">
+                    <div class="col-md-1"></div>
+                        <div class="col-md-10">
                             <div class="input-group form-group-lg"> 
                                 <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-camera" aria-hidden="true"></span></span>
                                 <input class="form-control" name="image" placeholder="Image upload" aria-describedby="sizing-addon2" type="file">
                             </div>
                         </div>
+                    <div class="col-md-1"></div>
                 </div>
                 <br>
                 <div class="row">
@@ -241,9 +263,14 @@
                         </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Discard</button>
-                <button type="submit" class="btn btn-danger">Save</button>
+            <div class="modal-footer" style="text-align: right; margin: 0 auto;">
+                <div class="row">
+                    <div class="col-md-6"></div>
+                        <div class="col-md-5">
+                            <button type="submit" class="btn btn-danger">Save</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Discard</button>
+                        </div>
+                    <div class="col-md-1"></div>
             </div>
         </form>
         </div>

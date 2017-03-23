@@ -58,7 +58,8 @@ class MainHandler(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
             self.redirect_to("winepy-home")
         except:
             self.error(500)
-        gettried = self.request.get("tried") == 'on'
+        gettried = True if self.request.get("tried") == "True" else False
+
 
         wine = WineData(    category=getcategory,
                             color = getcolor,
