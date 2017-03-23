@@ -34,8 +34,15 @@ class MainHandler(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
     def get(self):
         wines = WineData.query().fetch()
         params = {"wines": wines}
-        return self.render_template("winepy.html", params=params)
-#class AddWineHandler(BaseHandler):
+        return self.render_template("winepy-list.html", params=params)
+
+
+class AddWineHandler(BaseHandler):
+    def get(self):
+        wines = WineData.query().fetch()
+        params = {"wines": wines}
+        return self.render_template("winepy-add.html", params=params)
+
     def post(self):
         getcategory = self.request.get("category")
         getcolor = self.request.get("color")
@@ -60,7 +67,6 @@ class MainHandler(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
             self.error(500)
         gettried = True if self.request.get("tried") == "True" else False
 
-
         wine = WineData(    category=getcategory,
                             color = getcolor,
                             sweetness = getsweetness,
@@ -79,7 +85,7 @@ class MainHandler(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
 
         wines = WineData.query().fetch()
         params = {"wines": wines}
-        return self.render_template("winepy.html", params=params)
+        return self.render_template("winepy-list.html", params=params)
 
 
 class EditWineHandler(BaseHandler):
@@ -124,37 +130,11 @@ class DeleteWineHandler(BaseHandler):
     def get(self, dbobject_id):
         wine = WineData.get_by_id(int(dbobject_id))
         params = {"wine": wine}
-        return self.render_template("winepy_delete.html", params=params)
+        return self.render_template("winepy-list.html", params=params)
 
     def post(self, dbobject_id):
         wine = WineData.get_by_id(int(dbobject_id))
         wine.key.delete()
-        return self.redirect_to("winepy-home")
-
-
-class NotTriedWineHandler(BaseHandler):
-    def get(self, dbobject_id):
-        wine = WineData.get_by_id(int(dbobject_id))
-        params = {"wine": wine}
-        return self.render_template("winepy_nottried.html", params=params)
-
-    def post(self, dbobject_id):
-        wine = WineData.get_by_id(int(dbobject_id))
-        wine.tried = False
-        wine.put()
-        return self.redirect_to("winepy-home")
-
-
-class TriedWineHandler(BaseHandler):
-    def get(self, dbobject_id):
-        wine = WineData.get_by_id(int(dbobject_id))
-        params = {"wine": wine}
-        return self.render_template("winepy_tried.html", params=params)
-
-    def post(self, dbobject_id):
-        wine = WineData.get_by_id(int(dbobject_id))
-        wine.tried = True
-        wine.put()
         return self.redirect_to("winepy-home")
 
 
@@ -190,11 +170,9 @@ class ViewImageHandler(BaseHandler, blobstore_handlers.BlobstoreDownloadHandler)
 
 app = webapp2.WSGIApplication([
     webapp2.Route('/', MainHandler, name="winepy-home"),
-    #webapp2.Route('/add', AddWineHandler, name="winepy-add"),
+    webapp2.Route('/add', AddWineHandler, name="winepy-add"),
     webapp2.Route('/edit/<dbobject_id:\d+>', EditWineHandler),
     webapp2.Route('/delete/<dbobject_id:\d+>', DeleteWineHandler),
     webapp2.Route('/imageupload', ImageUploadHandler),
-    webapp2.Route('/viewimage/<photo_key:([^/]+)?>', ViewImageHandler),
-    webapp2.Route('/nottried/<dbobject_id:\d+>', NotTriedWineHandler),
-    webapp2.Route('/tried/<dbobject_id:\d+>', TriedWineHandler)
+    webapp2.Route('/viewimage/<photo_key:([^/]+)?>', ViewImageHandler)
 ], debug=True)

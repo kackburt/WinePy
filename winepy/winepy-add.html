@@ -1,0 +1,162 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+        <form method="post" action="/" enctype="multipart/form-data">
+        <h3>🍷 ADD A WINE 🍷</h3>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="input-group form-group-lg"> 
+                        <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span></span>
+                        <input class="form-control" name="name" placeholder="Name of wine" aria-describedby="sizing-addon2" type="text" required>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="input-group form-group-lg"> 
+                            <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-camera" aria-hidden="true"></span></span>
+                            <input class="form-control" name="image" placeholder="Image upload" aria-describedby="sizing-addon2" type="file">
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="input-group"> 
+                        <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></span>
+                        <select class="form-control" name="category" placeholder="category" aria-describedby="sizing-addon2" type="text" required>
+                            <option value="sparkling wine">Sparkling wine</option>
+                            <option value="wine" selected>Wine</option>
+                            <option value="NULL">N/A</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-5"></div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="input-group"> 
+                        <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></span>
+                        <select class="form-control" name="color" placeholder="color" aria-describedby="sizing-addon2" type="text" required>
+                            <option value="red" selected>Red</option>
+                            <option value="rose">Rose</option>
+                            <option value="white">White</option>
+                            <option value="NULL">N/A</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-5"></div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="input-group"> 
+                        <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-tint" aria-hidden="true"></span></span>
+                        <select class="form-control" name="sweetness" placeholder="sweetness" aria-describedby="sizing-addon2" type="text" required>
+                            <option value="dry" selected>Dry</option>
+                            <option value="semi-dry">Semi-dry</option>
+                            <option value="sweet">Sweet</option>
+                            <option value="NULL">N/A</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-5"></div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="input-group"> 
+                        <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-leaf" aria-hidden="true"></span></span>
+                        <input class="form-control" name="vine" placeholder="Grape variety" aria-describedby="sizing-addon2" type="text">
+                    </div>
+                </div>
+                <div class="col-md-5"></div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="input-group"> 
+                        <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
+                        <input class="form-control" name="year" placeholder="Vintage e.g. 2017" aria-describedby="sizing-addon2" type="number" min="1900" max="2099" step="1" required>
+                    </div>
+                </div>
+                <div class="col-md-5"></div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="input-group"> 
+                        <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-text-size" aria-hidden="true"></span></span>
+                        <input class="form-control" name="amount" placeholder="Amount e.g. 750" aria-describedby="sizing-addon2" type="number" step="1" required>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                        <select class="form-control" name="unit" placeholder="Unit" aria-describedby="sizing-addon2" type="text" required>
+                            <option value="ml" selected>Milliliter</option>
+                            <option value="NULL">N/A</option>
+                        </select>
+                </div>
+                <div class="col-md-5"></div>
+                <div class="col-md-2"></div>
+            </div>
+        <br>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="input-group form-group-lg"> 
+                        <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></span>
+                        <select class="form-control" name="country" placeholder="Country" aria-describedby="sizing-addon2" type="text" required>
+                            <option value="AT" selected>Austria</option>
+                            <option value="FR">France</option>
+                            <option value="SP">Spain</option>
+                            <option value="NULL">N/A</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-5"></div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="input-group"> 
+                        <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-screenshot" aria-hidden="true"></span></span>
+                        <input class="form-control" name="region" placeholder="Region" aria-describedby="sizing-addon2" type="text">
+                    </div>
+                </div>
+                <div class="col-md-5"></div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">            
+                    <div class="input-group">
+                        <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></span>
+                        <input class="form-control" name="winery" placeholder="Winery" aria-describedby="sizing-addon2" type="text" required>
+                    </div>
+                </div>
+                <div class="col-md-5"></div>
+                <div class="col-md-2"></div>
+            </div>
+        <br>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="checkbox">
+                        <label><input name="tried" type="checkbox" value="True">I already tried it</label>
+                    </div>
+                </div>
+                <div class="col-md-5"></div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <button type="submit" class="btn btn-danger">Save</button>
+                    <a href="/">
+                        <button type="button" class="btn btn-default">Discard</button>
+                    </a>
+                </div>
+                <div class="col-md-5"></div>
+                <div class="col-md-2"></div>
+            </div>
+    </form>
+</div> <!-- / CONTAINER -->
+{% endblock content %}
+

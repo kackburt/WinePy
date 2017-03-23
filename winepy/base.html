@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WinePy - make room for your wine, it's about time!</title>
+    <link rel="shortcut icon" href="favicon.ico"/>
+    <!-- Bootstrap CSS -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.13/r-2.1.1/datatables.min.css"/>
+    <style>
+    body { padding-top: 70px; }
+    .navbar { padding: 0 1%; }
+    #fixedbutton { position: fixed; bottom: 2%; right: 2%; border-radius: 50%; border: 2px solid white; height: 4em; width: 4em; box-shadow: 1px 1px 5px grey}
+    </style>
+        
+    <!-- JavaScript files -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>!window.jQuery && download.write('<script src="../js/jquery.min.js"><\/script>')</script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script>!window.jQuery && download.write('<script src="../js/bootstrap.min.js"><\/script>')</script>
+    <!-- dataTable JavaScript library -->
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.13/r-2.1.1/datatables.min.js"></script>
+</head>
+
+<body>
+    <div> <!-- header -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/"><img alt="WinePyLogo" src="/img/logo.svg" width="100px"></a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <div class="navbar-right">
+                        <p class="navbar-text">Signed in as <a href="#" class="navbar-link">Mark Otto</a></p>
+                        <button type="button" class="btn navbar-btn btn-success">LOGIN</button>
+                        <button type="button" class="btn navbar-btn btn-warning">LOGOUT</button>
+                    </div>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+    </div> <!-- / header -->
+
+    {% block content %}
+    {% endblock content %}
+
+    <!-- BUTTON TRITTER ADD WINE -->                    
+    <a href="/add">
+        <button type="submit" class="btn btn-danger btn-lg" id="fixedbutton">
+            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+        </button>
+    </a>
+</body>
+</html>
