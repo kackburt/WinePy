@@ -1,0 +1,47 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <p><h3>{{ wine.name }} ({{ wine.year }})</h3></p>
+            <p>Made by {{ wine.winery }}</p>
+            {% if wine.region == '' %}
+            <p>From {{ wine.country }}</p>
+            {% else %}
+            <p>From {{ wine.region }} in {{ wine.country }}</p>
+            {% endif %}
+            <p>Colour: {{ wine.color }}</p>
+            <p>Sweetness: {{ wine.sweetness }}</p>
+            {% if wine.vine == '' %}
+            {% else %}
+            <p>Vine: {{ wine.vine }}</p>
+            {% endif %}
+            <p>Bottle-size: {{ wine.amount }}{{ wine.unit }}</p>
+            {% if wine.tried == true %}
+            <p>✔️ You tried this {{ wine.category }}.</p>
+            {% else %}
+            <p>❌ You haven't tried this {{ wine.category }} yet.</p>
+            {% endif %}
+        </div>
+        <div class="col-md-5">
+            <p></p>
+            <div class="input-group form-group-lg"> 
+                    <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-camera" aria-hidden="true"></span></span>
+                    <p class="form-control">{{ wine.image }}</p>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+
+    <!-- BUTTON TRIGGER BACK TO LIST -->                    
+    <a href="/" title="Go back to list">
+        <button type="button" class="btn btn-danger btn-lg" id="fixedbutton">
+            <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+        </button>
+    </a>
+
+</div> <!-- / CONTAINER -->
+{% endblock content %}
+

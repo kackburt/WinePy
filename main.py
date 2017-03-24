@@ -62,7 +62,7 @@ class AddWineHandler(BaseHandler):
                 wine=wines.get_current_user().user_id(),
                 image=upload.key())
             wine_image.put()
-            self.redirect_to("winepy-home")
+            self.redirect_to("winepy-list")
         except:
             self.error(500)
         gettried = True if self.request.get("tried") == "True" else False
@@ -88,42 +88,11 @@ class AddWineHandler(BaseHandler):
         return self.render_template("winepy-list.html", params=params)
 
 
-class EditWineHandler(BaseHandler):
+class DetailsWineHandler(BaseHandler):
     def get(self, dbobject_id):
         wine = WineData.get_by_id(int(dbobject_id))
         params = {"wine": wine}
-        return self.render_template("winepy_edit.html", params=params)
-
-    def post(self, dbobject_id):
-        getnewcategory = self.request.get("newcategory")
-        getnewcolor = self.request.get("newcolor")
-        getnewsweetness = self.request.get("newsweetness")
-        getnewcountry = self.request.get("newcountry")
-        getnewregion = self.request.get("newregion")
-        getnewwinery = self.request.get("newwinery")
-        getnewname = self.request.get("newname")
-        getnewvine = self.request.get("newvine")
-        getnewyear = int(self.request.get("newyear"))
-        getnewamount = int(self.request.get("newamount"))
-        getnewunit = self.request.get("newunit")
-        getnewimage = self.request.get("newimage")
-        getnewtried = self.request.get("newtried")
-        wine = WineData.get_by_id(int(dbobject_id))
-        wine.category = getnewcategory,
-        wine.color = getnewcolor,
-        wine.sweetness = getnewsweetness,
-        wine.country = getnewcountry,
-        wine.region = getnewregion,
-        wine.winery = getnewwinery,
-        wine.name = getnewname,
-        wine.vine = getnewvine,
-        wine.year = getnewyear,
-        wine.amount = getnewamount,
-        wine.unit = getnewunit,
-        wine.image = getnewimage,
-        wine.tried = getnewtried,
-        wine.put()
-        return self.redirect_to("winepy-home")
+        return self.render_template("winepy-details.html", params=params)
 
 
 class DeleteWineHandler(BaseHandler):
@@ -135,7 +104,45 @@ class DeleteWineHandler(BaseHandler):
     def post(self, dbobject_id):
         wine = WineData.get_by_id(int(dbobject_id))
         wine.key.delete()
-        return self.redirect_to("winepy-home")
+        return self.redirect_to("winepy-list")
+
+
+class EditWineHandler(BaseHandler):
+    def get(self, dbobject_id):
+        wine = WineData.get_by_id(int(dbobject_id))
+        params = {"wine": wine}
+        return self.render_template("winepy-edit.html", params=params)
+
+    def post(self, dbobject_id):
+        getnewcategory = self.request.get("newcategory")
+        getnewcolor = self.request.get("newcolor")
+        getnewsweetness = self.request.get("newsweetness")
+        getnewcountry = self.request.get("newcountry")
+        getnewregion = self.request.get("newregion")
+        getnewwinery = self.request.get("newwinery")
+        getnewname = self.request.get("newname")
+        getnewvine = self.request.get("newvine")
+        #getnewyear = int(self.request.get("newyear"))
+        getnewamount = int(self.request.get("newamount"))
+        getnewunit = self.request.get("newunit")
+        getnewimage = self.request.get("newimage")
+        getnewtried = self.request.get("newtried")
+        wine = WineData.get_by_id(int(dbobject_id))
+        wine.category = getnewcategory
+        wine.color = getnewcolor
+        wine.sweetness = getnewsweetness
+        wine.country = getnewcountry
+        wine.region = getnewregion
+        wine.winery = getnewwinery
+        wine.name = getnewname
+        wine.vine = getnewvine
+        wine.year = getnewyear
+        wine.amount = getnewamount
+        wine.unit = getnewunit
+        wine.image = getnewimage
+        wine.tried = getnewtried
+        wine.put()
+        return self.redirect_to("winepy-list")
 
 
 class ImageUploadFormHandler(BaseHandler):
@@ -143,7 +150,7 @@ class ImageUploadFormHandler(BaseHandler):
         upload_url = blobstore.create_upload_url('/imageupload')
         files = blobstore.BlobInfo.all().fetch(300)
         params = {'upload_url':upload_url, 'files':files, 'n_files':len(files)}
-        self.render_template("winepy_imageupload.html", params=params)
+        self.render_template("winepy-imageupload.html", params=params)
 
 
 class ImageUploadHandler(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
@@ -169,10 +176,11 @@ class ViewImageHandler(BaseHandler, blobstore_handlers.BlobstoreDownloadHandler)
 
 
 app = webapp2.WSGIApplication([
-    webapp2.Route('/', MainHandler, name="winepy-home"),
+    webapp2.Route('/', MainHandler, name="winepy-list"),
     webapp2.Route('/add', AddWineHandler, name="winepy-add"),
-    webapp2.Route('/edit/<dbobject_id:\d+>', EditWineHandler),
     webapp2.Route('/delete/<dbobject_id:\d+>', DeleteWineHandler),
+    webapp2.Route('/details/<dbobject_id:\d+>', DetailsWineHandler),
+    webapp2.Route('/edit/<dbobject_id:\d+>', EditWineHandler),
     webapp2.Route('/imageupload', ImageUploadHandler),
     webapp2.Route('/viewimage/<photo_key:([^/]+)?>', ViewImageHandler)
 ], debug=True)
