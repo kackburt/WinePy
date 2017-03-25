@@ -3,6 +3,7 @@
 
 {% block content %}
 <div class="container">
+    <h1>WINE DETAILS</h1>
     <div class="row">
         <div class="col-md-5">
             <p><h3>{{ wine.name }} ({{ wine.year }})</h3></p>
@@ -29,7 +30,7 @@
             <p></p>
             <div class="input-group form-group-lg"> 
                     <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-camera" aria-hidden="true"></span></span>
-                    <p class="form-control">{{ wine.image }}</p>
+                    <p class="form-control"><a href="/uploads/{{ wine.image }}">CLICK FOR IMAGE</a></p>
             </div>
         </div>
         <div class="col-md-2"></div>
