@@ -15,39 +15,31 @@
         <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
             <tr>
-                <!--glyphicon glyphicon-floppy-disk-->
-                <th>Type</th>
-                <th>Colour</th>
+                <th>ACTIONS</th>
                 <th>Name</th>
+                <th>Vintage</th>
                 <th>Winery</th>
                 <th>Country</th>
-                <th>Vintage</th>
+                <th>Type</th>
+                <th>Colour</th>
                 <th>Tried</th>
-                <th>ACTIONS</th>
             </tr>
         </thead>
         <tfoot>
             <tr>
-                <th>Type</th>
-                <th>Colour</th>
+                <th>ACTIONS</th>
                 <th>Name</th>
+                <th>Vintage</th>
                 <th>Winery</th>
                 <th>Country</th>
-                <th>Vintage</th>
+                <th>Type</th>
+                <th>Colour</th>
                 <th>Tried</th>
-                <th>ACTIONS</th>
             </tr>
         </tfoot>
         <tbody>
             {% for wine in wines %}
             <tr>
-                <td>{{ wine.category }}</td>
-                <td>{{ wine.color }}</td>
-                <td>{{ wine.name }}</td>
-                <td>{{ wine.winery }}</td>
-                <td>{{ wine.country }}</td>
-                <td>{{ wine.year }}</td>
-                <td>{% if wine.tried == true %}️️️️️️️✔️{% else %}❌{% endif %}</td>
                 <td>
                     <a href="/details/{{ wine.key.id() }}" title="Details" style="text-decoration: none;">
                         <button class="btn btn-danger" title="Details" type="submit">
@@ -59,12 +51,45 @@
                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                         </button>
                     </a>
-                    <form action="/delete/{{ wine.key.id() }}" method="post" style="display: inline;">
-                        <button class="btn btn-danger" title="Delete" type="submit">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                        </button>
-                    </form>
+                    <!-- BUTTON TRITTER DELETE WINE MODAL -->
+                    <button type="button" class="btn btn-danger" title="Delete" data-toggle="modal" data-target="#deletewine{{ wine.key.id() }}">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                    </button>
+
+                        <!-- DELETE WINE MODAL -->
+                    <div class="modal fade" id="deletewine{{ wine.key.id() }}" tabindex="-1" role="dialog" aria-labelledby="deletelabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h3 class="modal-title" id="deletelabel">CONFIRM DELETE</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <p><h4>{{ wine.name }} ({{ wine.year }})</h4></p>
+                                    <p>Made by {{ wine.winery }}</p>
+                                    {% if wine.region == '' %}
+                                    <p>From {{ wine.country }}</p>
+                                    {% else %}
+                                    <p>From {{ wine.region }} in {{ wine.country }}</p>
+                                    {% endif %}
+                                </div>
+                                <div class="modal-footer" style="text-align: right; margin: 0 auto;">
+                                    <form action="/delete/{{ wine.key.id() }}" method="post" style="display: inline;">
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Discard</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- / MODAL -->
                 </td>
+                <td>{{ wine.name }}</td>
+                <td>{{ wine.year }}</td>
+                <td>{{ wine.winery }}</td>
+                <td>{{ wine.country }}</td>
+                <td>{{ wine.category }}</td>
+                <td>{{ wine.color }}</td>
+                <td>{% if wine.tried == true %}️️️️️️️✔️{% else %}❌{% endif %}</td>
             </tr>
             {% endfor %}
         </tbody>
