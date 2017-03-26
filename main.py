@@ -56,7 +56,12 @@ class AddWineHandler(BaseHandler):
 
 class AddWineUploadHandler(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
     def post(self):
+        user = users.get_current_user()
+        if not user:
+            return self.write("You are not logged in!")
+
         try:
+            #getuser = users.get_current_user()
             getcategory = self.request.get("category")
             getcolor = self.request.get("color")
             getsweetness = self.request.get("sweetness")
@@ -70,7 +75,8 @@ class AddWineUploadHandler(BaseHandler, blobstore_handlers.BlobstoreUploadHandle
             getunit = self.request.get("unit")
             gettried = True if self.request.get("tried") == "True" else False
             getimage = self.get_uploads()[0]
-            wine = WineData (   category=getcategory,
+            wine = WineData (   #user=getuser,
+                                category=getcategory,
                                 color=getcolor,
                                 sweetness=getsweetness,
                                 country=getcountry,
@@ -104,6 +110,10 @@ class DeleteWineHandler(BaseHandler):
         return self.render_template("winepy-list.html", params=params)
 
     def post(self, dbobject_id):
+        user = users.get_current_user()
+        if not user:
+            return self.write("You are not logged in!")
+
         wine = WineData.get_by_id(int(dbobject_id))
         wine.key.delete()
         return self.redirect_to("winepy-list")
@@ -119,6 +129,10 @@ class EditWineHandler(BaseHandler):
 
 class EditWineUploadHandler(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
     def post(self, dbobject_id):
+        user = users.get_current_user()
+        if not user:
+            return self.write("You are not logged in!")
+
         try:
             getnewcategory = self.request.get("newcategory")
             getnewcolor = self.request.get("newcolor")
@@ -133,7 +147,6 @@ class EditWineUploadHandler(BaseHandler, blobstore_handlers.BlobstoreUploadHandl
             getnewunit = self.request.get("newunit")
             getnewtried = True if self.request.get("newtried") == "True" else False
             getnewimage = self.get_uploads()[0]
-
             wine = WineData.get_by_id(int(dbobject_id))
             wine.category = getnewcategory
             wine.color = getnewcolor
