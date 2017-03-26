@@ -5,6 +5,7 @@ import webapp2
 from models import WineData
 from google.appengine.ext import blobstore
 from google.appengine.api import images
+from google.appengine.api import users
 from google.appengine.ext.webapp import blobstore_handlers
 
 winepy_dir = os.path.join(os.path.dirname(__file__), "winepy")
@@ -31,8 +32,18 @@ class BaseHandler(webapp2.RequestHandler):
 
 class MainHandler(BaseHandler):
     def get(self):
+        user = users.get_current_user()
         wines = WineData.query().fetch()
-        params = {"wines": wines}
+        if user:
+            logged_in = True
+            logout_url = users.create_logout_url('/')
+
+            params = {"logged_in": logged_in, "logout_url": logout_url, "user": user, "wines": wines}
+        else:
+            logged_in = False
+            login_url = users.create_login_url('/')
+
+            params = {"logged_in": logged_in, "login_url": login_url, "user": user, "wines": wines}
         return self.render_template("winepy-list.html", params=params)
 
 

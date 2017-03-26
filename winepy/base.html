@@ -41,14 +41,8 @@
                 </button>
                 <a class="navbar-brand" href="/"><img alt="WinePyLogo" src="/img/logo.svg" width="100px"></a>
                 </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <div class="navbar-right">
-                        <p class="navbar-text">Signed in as <a href="#" class="navbar-link">Mark Otto</a></p>
-                        <button type="button" class="btn navbar-btn btn-success">LOGIN</button>
-                        <button type="button" class="btn navbar-btn btn-warning">LOGOUT</button>
-                    </div>
-                </div><!-- /.navbar-collapse -->
+                {% block navbarlogin %}
+                {% endblock navbarlogin %}
             </div><!-- /.container-fluid -->
         </nav>
     </div> <!-- / header -->
